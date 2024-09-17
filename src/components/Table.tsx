@@ -1,12 +1,23 @@
 import { TableRow } from "./TableRow"
 import { User } from "../types"
+import { useSelector } from "react-redux"
+import { RootState } from "../store"
 
 type TableProps = {
   usersData: User[];
 }
 
 export const Table = ({usersData}:TableProps) => {
-  console.log(usersData);
+
+  const filters = useSelector((state: RootState) => state.filters);
+
+  const filteredData = usersData.filter(user => 
+    user.name.toLowerCase().includes(filters.name.toLocaleLowerCase()) &&
+    user.username.toLowerCase().includes(filters.username.toLocaleLowerCase()) &&
+    user.email.toLowerCase().includes(filters.email.toLocaleLowerCase()) &&
+    user.phone.includes(filters.phone)
+  )
+
   return (
     <div className="overflow-x-auto">
       <table className="table-auto border-separate border-spacing-y-3 w-full">
@@ -19,7 +30,7 @@ export const Table = ({usersData}:TableProps) => {
           </tr>
         </thead>
         <tbody>
-          {usersData.map((user)=>{
+          {filteredData.map((user)=>{
             return <TableRow key={user.id} user={user}/>
           })}
         </tbody>
