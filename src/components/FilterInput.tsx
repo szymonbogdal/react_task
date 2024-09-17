@@ -33,7 +33,7 @@ export const FilterInput = ({id, text, placeholder, field}: FilterProps) => {
       >{text}</label>
       <input 
         id={id}
-        className="bg-background px-2 py-0.5 rounded-lg focus:outline-secondary"
+        className="px-2 py-0.5 rounded-lg focus:outline-secondary"
         placeholder={placeholder}
         autoComplete="off"
         onChange={handleChange}
