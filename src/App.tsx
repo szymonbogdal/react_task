@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="bg-background min-h-screen flex items-center flex-col">
-      <div className="w-fit">
+      <div className="w-full max-w-6xl px-4">
         {loading ? (
           <Loader />
         ) : error ? (
@@ -25,7 +25,9 @@ function App() {
         ) : (
           <>
             <FiltersContainer/>
-            <Table usersData={usersData}/>
+            <div className="overflow-x-auto">
+              <Table usersData={usersData}/>
+            </div>
           </>
         )}
       </div>
