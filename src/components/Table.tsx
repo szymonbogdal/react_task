@@ -20,9 +20,9 @@ export const Table = ({usersData}:TableProps) => {
 
   return (
     <div className="overflow-x-auto">
-      <table className="table-auto border-separate border-spacing-y-3 w-full">
+      <table className="table-auto border-separate border-spacing-y-2 w-full">
         <thead>
-          <tr className="bg-secondary text-white text-left drop-shadow-md">
+          <tr className="bg-primary text-white text-left drop-shadow-md ">
             <th className="p-4">Name</th>
             <th className="p-4">Username</th>
             <th className="p-4">Email</th>
@@ -30,9 +30,15 @@ export const Table = ({usersData}:TableProps) => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((user)=>{
-            return <TableRow key={user.id} user={user}/>
-          })}
+          {filteredData.length > 0 ? (
+            filteredData.map((user)=>{
+              return <TableRow key={user.id} user={user}/>
+            })
+          ):(
+            <tr className="bg-gray-100 drop-shadow-md">
+              <td colSpan={4} className="p-4 text-center">No records found.</td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
